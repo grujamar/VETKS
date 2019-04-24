@@ -2,6 +2,10 @@ $(document).ready(function () {
 
     //Validation form start
     $(function () {
+        ValidateLogin();
+    });
+
+    function ValidateLogin() {
         $(".user-login-form").validate({
             highlight: function (element) {
                 $(element).closest('.form-group').addClass("has-danger");
@@ -37,8 +41,76 @@ $(document).ready(function () {
                 error.appendTo($(element).closest('.form-group').find('.error-msg'));
             }
         });
-    });
+    }
+
     //Form Validation
+    //------------------LOGIN JSON----------------
+
+    $('#ajax-json').click(function () {
+        var Validation = $(".user-login-form").valid();
+        //console.log("Console log " + Validation);
+        if (Validation){
+            var userEmail = $('#userEmail').val();
+            var userPassword = $('#userPassword').val();
+            var loginError = true;
+            console.log("userInfo: " + userEmail + " " + userPassword + " " + loginError);
+
+            $.ajax({
+                type: 'POST',
+                url: 'https://jsonplaceholder.typicode.com/posts',
+                dataType: 'json',
+                beforeSend: function () {
+                    $('#user-login').html('<img src="https://i.gifer.com/7YQl.gif">').fadeIn('fast');
+                }
+            })
+                .done(function (data) {
+
+                    /*$('#data-json-wrapper').empty();*/
+                    $('#user-login').fadeOut('fast');
+
+                    /*
+                     for (var x in data) {
+                     $('#data-json-wrapper').append('<h2>' + data[x].id + '. ' + data[x].title + '</h2>');
+                     $('#data-json-wrapper').append('<p>' + data[x].body + '</p> <hr>');
+                     }
+                     */
+                    $.each(data, function (key, value) {
+                        if (userEmail === value.title && userPassword === value.body) {
+                            loginError = false;
+                        }
+                    });
+
+                    if (loginError === false) {
+                        document.locattion = "index.php?userEmail=" + userEmail;
+                        console.log("index.html: " + userEmail + " " + userPassword + " " + loginError);
+                    } else {
+                        $('#user-login').slideUp('slow').slideDown('slow');
+                        if (userEmail !== ''){
+                        }else{
+                            $('#userEmail').val('');
+                        }
+                        if (userPassword !== ''){
+                        }else{
+                            $('#userPassword').val('');
+                        }
+                        console.log("login.html: " + userEmail + " " + userPassword + " " + loginError);
+                        alert("Parametri za prijavu nisu dobri.");
+                    }
+                })
+                .fail(function (jqXHR, statusText) {
+
+                    $('#data-text-wrapper').text(jqXHR.status + '-' + jqXHR.statusText + '-' + statusText);
+                    console.log("Fail: " + userEmail + userPassword + loginError);
+                });
+
+            return false;
+            
+        } 
+    });
+
+    //////////////////////////////////////////////
+
+
 
 
     msieversion();
@@ -62,29 +134,7 @@ $(document).ready(function () {
     }
 
 
-
-    /* === Forms === */
-
-    /* --- Labels --- */
-    /*
-     $('.floating-label').next().on('input change focus', function () {
-     $(this).prev('.floating-label').addClass('is-floating');
-     }).on('blur', function () {
-     if (!$(this).val().length > 0 || $(this).is('select') && $(this).val() === 0) {
-     $(this).prev('.floating-label').removeClass('is-floating');
-     }
-     });
-     
-     $('.floating-label').each(function () {
-     var value = $(this).next().val();
-     if (value.length > 0) {
-     $(this).addClass('is-floating');
-     }
-     });
-     */
-
-
-//Animate elements on scrool
+    //Animate elements on scrool
     function animation() {
         var windowHight = $(window).height();
         var scroll = $(window).scrollTop();
@@ -95,7 +145,6 @@ $(document).ready(function () {
                 $(this).addClass(animacija);
             }
         });
-
     }
 
     animation();
@@ -124,19 +173,6 @@ $(document).ready(function () {
     });
 
 
-    /* === Do it on scroll === */
-
-    $(window).on('scroll', function () {
-        if (coursesSection.length > 0) {
-            courseCardsReveal();
-            courseGraphicReveal();
-        }
-        if (pageCourse.length > 0) {
-            navCourse();
-        } else {
-            navHome();
-        }
-    });
 
 
 
