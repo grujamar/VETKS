@@ -373,7 +373,7 @@
 }
 
 .container-table{
-    width: 70%;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -382,3 +382,76 @@ table td, table th{
     vertical-align: middle;
 }
 
+.btn-outline-secondary{
+
+    padding: 4px !important;
+}
+
+
+/*ChooseUser*/
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link,
+.nav-pills .nav-link:hover
+{
+    color: #fff;
+    background-color: #203963;
+}
+
+.nav-pills .nav-link {
+    border-radius: 0rem;
+    background-color: #3a66af;
+    color:#fff;
+}
+
+.tab-content{
+    box-shadow: 0px 3px 3px #000;
+    padding: 30px;
+}
+
+.tooltip-inner{
+    background: gray !important;
+}
+
+#main-header img{
+    width: 100%;
+}
+
+
+/*Horizontal NAVBAR*/
+.hor-navbar{
+    bottom: 0;
+}
+
+.hor-navbar ul {
+    list-style-type: none;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    overflow: hidden;
+    background-color: #3a66af;
+}
+
+.hor-navbar li {
+    float: left;
+    border-right:1px solid #bbb;
+}
+
+.hor-navbar li:last-child {
+    border-right: none;
+}
+
+.hor-navbar li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 12px 16px;
+    text-decoration: none;
+}
+
+.hor-navbar li a:hover:not(.active) {
+    background-color: #203963;
+}
+
+.hor-navbar .active {
+    background-color: #203963;
+}

@@ -1,0 +1,40 @@
+
+@media(min-width:576px){
+
+
+}
+
+
+@media(min-width:768px){
+
+    
+
+    #main-header img{
+        width: 70%;
+    }
+
+}
+
+@media(min-width:992px){
+
+    
+
+
+}
+
+
+@media(min-width:1200px){
+    .container-table{
+        width: 70%;
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    .hor-navbar ul {
+       width: 70%; 
+    }
+}
+
+
+
+

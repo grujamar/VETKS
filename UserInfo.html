@@ -6,11 +6,100 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Veterinarska komora</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Marko Grujic - PIS">
+        <meta name="description" content="Veterinarska komora - Prijava">
+        <meta name="keywords" content="Veterinarska, komora, Prijava">
+        <!--iOS compatibile-->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-title" content="Site Title">
+        <link rel="apple-touch-icon" href="putanja do ikonice favicon li neke">        
+        <!--Android compatibile-->
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="aplication-name" content="Site Title">
+        <link rel="icon" type="icon/png" href="putanja do ikonice favicon li neke">
+        <!--FONTOVI Awesome-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!--bootstrap-->
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <!--external css, like plugins ...-->
+        <!--theme css-->
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
+        <link href="css/responsive.css" rel="stylesheet" type="text/css"/>
+        <style>
+            #user-wrapper img{
+                display: block;
+                margin: auto;
+                width: 200px;
+            }
+        </style>
     </head>
     <body>
-        <div>TODO write content</div>
+        <!--header start-->
+        <header id="main-header" class="py-3" style="background-image: linear-gradient(to right, rgba(220, 220, 220,0.3), rgba(220, 220, 220,0.9))">
+            <div class="container">
+                <nav class="navbar navbar-expand navbar-light">
+                    <a class="navbar-brand" href="#">
+                        <img src="img/logo.png" class="d-inline-block align-top" alt="logo"/>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" >
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="main-nav">
+                        <ul class="navbar-nav ml-auto text-capitalize">
+
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header><!--header end-->
+        <!--main start-->
+        <main>
+            <div class="container">
+                <section class="my-5">
+                    <div class="row">
+                        <article class="col-12">
+                            <ul class="nav nav-pills nav-fill" id="product-description" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#user-profile" role="tab" aria-controls="home" aria-selected="true">
+                                        <span class="fa fa-user mr-2"></span>
+                                        Profil
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#text-2" role="tab" aria-controls="profile" aria-selected="false">
+                                        <span class="fa fa-id-card-o mr-2"></span>
+                                        Kartica
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#text-3" role="tab" aria-controls="contact" aria-selected="false">
+                                        <span class="fa fa-certificate mr-2"></span>
+                                        Licenca
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="product-description-content">
+                                <div id="user-profile" class="tab-pane fade show active" role="tabpanel" aria-labelledby="home-tab">
+
+                                </div>
+                                <div class="tab-pane fade" id="text-2" role="tabpanel" aria-labelledby="profile-tab">Tab 2</div>
+                                <div class="tab-pane fade" id="text-3" role="tabpanel" aria-labelledby="contact-tab">Tab 3</div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+            </div>
+        </main><!--main end-->
+        <!--SCRIPTS goes here-->
+        <!--First jquery, then popper and finaly bootstrap-->
+        <script src="js/jquery.min.js" type="text/javascript"></script>
+        <script src="js/popper.js" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/jquery.validate.min.js" type="text/javascript"></script>
+        <!--All page js-->
+        <script src="js/chooseUser.js" type="text/javascript"></script>
     </body>
 </html>

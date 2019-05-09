@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    /*
+    
      //Validation form start
      $(function () {
      ValidateLogin();
@@ -43,6 +43,7 @@ $(document).ready(function () {
      });
      }
      
+    /*
      //Form Validation
      //------------------LOGIN JSON----------------
      
@@ -183,11 +184,18 @@ $(document).ready(function () {
                 //console.log(objData);
                 var theadTable = $('<thead class="thead-dark"><tr><th>Ime</th><th>Prezime</th><th>Titula</th><th>Datum rodjenja</th><th>Fotografija</th><th>Broj Licence</th><th>Rok važenja licence</th><th></th></tr></thead>');
                 //var tr;
-                var tfootTable = $('<tfoot><tr><th><input type="text" data-search=".name"></th><th><input type="text" data-search=".lastName"></th><th><input type="text" data-search=".title"></th><th><input type="text" data-search=".dateOfBirth"></th><th><input type="text" data-search=".photo"></th><th><input type="text" data-search=".licenseNumber"></th><th><input type="text" data-search=".licenseValidity"></th></tr></tfoot>');
+                //var tfootTable = $('<tfoot><tr><th><input type="text" data-search=".name"></th><th><input type="text" data-search=".lastName"></th><th><input type="text" data-search=".title"></th><th><input type="text" data-search=".dateOfBirth"></th><th><input type="text" data-search=".photo"></th><th><input type="text" data-search=".licenseNumber"></th><th><input type="text" data-search=".licenseValidity"></th></tr></tfoot>');
                 for (var x in data) {
 
                     $('#example').append(theadTable);                 
-                    $('#example').append("<tbody id='myTable'><tr><td>" + data[x].name + "</td><td>" + data[x].lastName + "</td><td>" + data[x].title + "</td><td>" + (data[x].dateOfBirth).substring(0, 10) + "</td><td>" + data[x].photo + "</td><td>" + data[x].licenseNumber + "</td><td>" + (data[x].licenseValidity).substring(0, 10) + "</td><td><button id='chooseUser' class='btn btn-outline-secondary'>Izaberi korisnika</button></td></tr></tbody>");
+                    $('#example').append("<tbody id='myTable'><tr><td>" + data[x].name + 
+                                                        "</td><td>" + data[x].lastName + 
+                                                        "</td><td>" + data[x].title + 
+                                                        "</td><td>" + (data[x].dateOfBirth).substring(0, 10) + 
+                                                        "</td><td>" + data[x].photo + 
+                                                        "</td><td>" + data[x].licenseNumber + 
+                                                        "</td><td>" + (data[x].licenseValidity).substring(0, 10) + 
+                                                        "</td><td><button id='chooseUser' class='btn btn-outline-secondary' value="+data[x].personId+">Izaberi korisnika</button></td></tr></tbody>");
                 }
             })
             .fail(function (jqXHR, statusText) {
@@ -202,25 +210,20 @@ $(document).ready(function () {
             });
       });
     
-
+    
     ///////////////////////////////////////////////
     
     /////////////////////////////////////////////////////////////////////////
    //-------------------ChooseUser-------------------------------------------
-   
-    
-    $("#chooseUser").on("click", function () {
-        console.log("Radi");
-        alert("RADI");
+    $("#example").on("click","#chooseUser" , function(){
+        //alert("RADI" + $(this).val());
         //this will redirect us in same window
-        document.location.href = 'http://localhost:8383/VETKS/UserInfo.html';       
-});
-
-$("#example").on("click","#chooseUser", function(){
-        console.log("Radi");
-        alert("RADI");
-        //this will redirect us in same window
-        document.location.href = 'http://localhost:8383/VETKS/UserInfo.html'; 
-});
+        var url = 'http://localhost:8383/VETKS/UserInfo.html';
+        urlParameter = "?personid=" + $(this).val();
+        var encodedUrlParameter = encodeURIComponent(urlParameter);
+        url += encodedUrlParameter;
+        document.location.href = url;
+    });
    /////////////////////////////////////////////////////////////////////////
+   
 });
