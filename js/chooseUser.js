@@ -33,7 +33,7 @@ $(document).ready(function () {
                 console.log(data);
                 //var objData = jQuery.parseJSON(data);
                 //console.log(objData);
-
+                    $('#user-img').append('<figure><img src="https://api.adorable.io/avatars/150x150/abott@adorable.png" alt=""/></figure>');
                     $('#user-profile').append('<div class="row"><div class="col-md-4"><label class="font-weight-bold">Ime</label></div><div class="col-md-8">' + data.name + '</div></div><hr>');
                     $('#user-profile').append('<div class="row"><div class="col-md-4"><label class="font-weight-bold">Prezime</label></div><div class="col-md-8">' + data.lastName + '</div></div><hr>');
                     $('#user-profile').append('<div class="row"><div class="col-md-4"><label class="font-weight-bold">Titula</label></div><div class="col-md-8">' + data.title + '</div></div><hr>');

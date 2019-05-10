@@ -25,13 +25,13 @@
 
 @media(min-width:1200px){
     .container-table{
-        width: 70%;
+        width: 80%;
         padding-right: 0;
         padding-left: 0;
     }
 
     .hor-navbar ul {
-       width: 70%; 
+       width: 80%; 
     }
 }
 

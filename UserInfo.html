@@ -36,9 +36,9 @@ and open the template in the editor.
             }
         </style>
     </head>
-    <body>
+    <body class="login-bg">
         <!--header start-->
-        <header id="main-header" class="py-3" style="background-image: linear-gradient(to right, rgba(220, 220, 220,0.3), rgba(220, 220, 220,0.9))">
+        <header id="main-header" class="py-3" style="background-image: linear-gradient(to right, rgba(192, 192, 192,0.9), rgba(192, 192, 192,0.9))">
             <div class="container">
                 <nav class="navbar navbar-expand navbar-light">
                     <a class="navbar-brand" href="#">
@@ -54,6 +54,14 @@ and open the template in the editor.
                     </div>
                 </nav>
             </div>
+            <div class="hor-navbar">
+                <ul>
+                    <li><a class="active" href="http://localhost:8383/VETKS/index.html">Članovi</a></li>
+                    <li><a href="#news">Članske kartice</a></li>
+                    <li><a href="#contact">Licence</a></li>
+                    <li style="float: right;"><a href="http://localhost:8383/VETKS/login.html">Odjava</a></li>
+                </ul>
+            </div>
         </header><!--header end-->
         <!--main start-->
         <main>
@@ -63,7 +71,7 @@ and open the template in the editor.
                         <article class="col-12">
                             <ul class="nav nav-pills nav-fill" id="product-description" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#user-profile" role="tab" aria-controls="home" aria-selected="true">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#user-info" role="tab" aria-controls="home" aria-selected="true">
                                         <span class="fa fa-user mr-2"></span>
                                         Profil
                                     </a>
@@ -81,9 +89,16 @@ and open the template in the editor.
                                     </a>
                                 </li>
                             </ul>
-                            <div class="tab-content" id="product-description-content">
-                                <div id="user-profile" class="tab-pane fade show active" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="tab-content bg-white" id="product-description-content">
+                                <div id="user-info" class="tab-pane fade show active" role="tabpanel" aria-labelledby="home-tab">
+                                    <div class="row">
+                                        <aside id="user-img" class="col-12 col-md-3 text-center">
+                                            
+                                        </aside>
+                                        <article id="user-profile" class="col-12 col-md-9">
 
+                                        </article>
+                                    </div>
                                 </div>
                                 <div class="tab-pane fade" id="text-2" role="tabpanel" aria-labelledby="profile-tab">Tab 2</div>
                                 <div class="tab-pane fade" id="text-3" role="tabpanel" aria-labelledby="contact-tab">Tab 3</div>

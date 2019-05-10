@@ -366,10 +366,10 @@
 
 
 /*INDEX*/
-#example img{
+#example1 img{
     display: block;
     margin: auto;
-    width: 300px;
+    width: 50px;
 }
 
 .container-table{
@@ -382,8 +382,12 @@ table td, table th{
     vertical-align: middle;
 }
 
-.btn-outline-secondary{
+table thead th{
+    background-color: black;
+    color: white;
+}
 
+.btn-outline-secondary{
     padding: 4px !important;
 }
 
@@ -394,12 +398,12 @@ table td, table th{
 .nav-pills .nav-link:hover
 {
     color: #fff;
-    background-color: #203963;
+    background-color: #3d444f;
 }
 
 .nav-pills .nav-link {
     border-radius: 0rem;
-    background-color: #3a66af;
+    background-color: #76797c;
     color:#fff;
 }
 
@@ -415,7 +419,6 @@ table td, table th{
 #main-header img{
     width: 100%;
 }
-
 
 /*Horizontal NAVBAR*/
 .hor-navbar{
@@ -454,4 +457,20 @@ table td, table th{
 
 .hor-navbar .active {
     background-color: #203963;
+}
+
+/**/
+
+.login-bg {
+    background-image: linear-gradient(to right, rgba(220,220,220,0.6), rgba(220,220,220,0.6)), url('../img/background1.jpg');
+}
+
+
+/*Image on choose user*/
+#user-img figure img{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 1rem;
 }
