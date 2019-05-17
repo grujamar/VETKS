@@ -372,6 +372,10 @@
     width: 50px;
 }
 
+table thead th {
+    background-color: #203963 !important;
+}
+
 .container-table{
     width: 100%;
     margin: 0 auto;
@@ -391,19 +395,24 @@ table thead th{
     padding: 4px !important;
 }
 
-
 /*ChooseUser*/
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link,
 .nav-pills .nav-link:hover
 {
     color: #fff;
-    background-color: #3d444f;
+    background-color: #203963;
+}
+
+.nav-pills .nav-link .fa{
+    font-size: 20px;
+    padding: 10px 20px;
 }
 
 .nav-pills .nav-link {
+    font-size: 20px;
     border-radius: 0rem;
-    background-color: #76797c;
+    background-color: #3a66af;
     color:#fff;
 }
 
@@ -459,7 +468,7 @@ table thead th{
     background-color: #203963;
 }
 
-/**/
+/*Background*/
 
 .login-bg {
     background-image: linear-gradient(to right, rgba(220,220,220,0.6), rgba(220,220,220,0.6)), url('../img/background1.jpg');
@@ -473,4 +482,33 @@ table thead th{
     border-radius: 50%;
     overflow: hidden;
     margin: 0 auto 1rem;
+}
+
+/*btnInserPerson*/
+
+.btn-outline-info{
+    color: #203963 !important;
+    border-color: #203963 !important;
+}
+
+.btn-info{
+    background-color: #203963 !important;
+    border-color: #203963 !important;
+}
+
+.btn-info:hover{
+    background-color: #13233d !important;
+}
+
+.btn-outline-info:hover {
+    color: #fff !important;
+    background-color: #203963 !important;
+    border-color: #203963 !important;
+
+}
+
+.btn-outline-info:focus, .btn-outline-info.focus {
+
+    box-shadow: 0 0 0 0.2rem rgba(32, 57, 99, 0.5) !important;
+
 }

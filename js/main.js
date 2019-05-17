@@ -1,48 +1,47 @@
 $(document).ready(function () {
-    
-     //Validation form start
-     $(function () {
-     ValidateLogin();
-     });
-     
-     function ValidateLogin() {
-     $(".user-login-form").validate({
-     highlight: function (element) {
-     $(element).closest('.form-group').addClass("has-danger");
-     $(element).addClass("form-control-danger");
-     },
-     unhighlight: function (element) {
-     $(element).closest('.form-group').removeClass('has-danger').addClass('has-success');
-     $(element).removeClass('form-control-danger').addClass('form-control-success');
-     },
-     rules: {
-     email: {
-     required: true,
-     email: true
-     },
-     password: {
-     required: true,
-     minlength: 6
-     }
-     },
-     messages: {
-     email: {
-     required: 'Email je obavezan',
-     email: 'Email nije u validnom formatu'
-     },
-     password: {
-     required: "Lozinka je obavezna",
-     minlength: "Lozinka mora imati bar {0} karaktera"
-     }
-     
-     },
-     errorElement: 'p',
-     errorPlacement: function (error, element) {
-     error.appendTo($(element).closest('.form-group').find('.error-msg'));
-     }
-     });
-     }
-     
+
+//Validation form start
+    $(function () {
+        ValidateLogin();
+    });
+    function ValidateLogin() {
+        $(".user-login-form").validate({
+            highlight: function (element) {
+                $(element).closest('.form-group').addClass("has-danger");
+                $(element).addClass("form-control-danger");
+            },
+            unhighlight: function (element) {
+                $(element).closest('.form-group').removeClass('has-danger').addClass('has-success');
+                $(element).removeClass('form-control-danger').addClass('form-control-success');
+            },
+            rules: {
+                email: {
+                    required: true,
+                    email: true
+                },
+                password: {
+                    required: true,
+                    minlength: 6
+                }
+            },
+            messages: {
+                email: {
+                    required: 'Email je obavezan',
+                    email: 'Email nije u validnom formatu'
+                },
+                password: {
+                    required: "Lozinka je obavezna",
+                    minlength: "Lozinka mora imati bar {0} karaktera"
+                }
+
+            },
+            errorElement: 'p',
+            errorPlacement: function (error, element) {
+                error.appendTo($(element).closest('.form-group').find('.error-msg'));
+            }
+        });
+    }
+
     /*
      //Form Validation
      //------------------LOGIN JSON----------------
@@ -104,7 +103,7 @@ $(document).ready(function () {
      } 
      });
      */
-    //////////////////////////////////////////////
+//////////////////////////////////////////////
 
 
     /*
@@ -168,71 +167,44 @@ $(document).ready(function () {
      backgroundSize();
      });
      */
-   /////////////////////////////////////////////////////////////////////////
-   //-------------------TABLE-------------------------------------------
-    $.ajax({
-        url: 'http://ucenickidomovi.pis.rs/VetWebService/api/person',
-        dataType: 'json',
-        beforeSend: function () {
-            $('#example').html('<img src="https://i.gifer.com/7YQl.gif">');
-        }
-    })
-            .done(function (data) {
-                //$('#example').empty();
-                console.log(data);
-                //var objData = jQuery.parseJSON(data);
-                //console.log(objData);
-                //var theadTable = $('<thead class="thead-dark"><tr><th>Ime</th><th>Prezime</th><th>Titula</th><th>Datum rodjenja</th><th>Fotografija</th><th>Broj Licence</th><th>Rok važenja licence</th><th></th></tr></thead>');
-                //var tr;
-                //var tfootTable = $('<tfoot><tr><th><input type="text" data-search=".name"></th><th><input type="text" data-search=".lastName"></th><th><input type="text" data-search=".title"></th><th><input type="text" data-search=".dateOfBirth"></th><th><input type="text" data-search=".photo"></th><th><input type="text" data-search=".licenseNumber"></th><th><input type="text" data-search=".licenseValidity"></th></tr></tfoot>');
-                for (var x in data) {
-                    /*
-                    $('#example').append(theadTable);                 
-                    $('#example').append("<tbody id='myTable'><tr><td>" + data[x].name + 
-                                                        "</td><td>" + data[x].lastName + 
-                                                        "</td><td>" + data[x].title + 
-                                                        "</td><td>" + (data[x].dateOfBirth).substring(0, 10) + 
-                                                        "</td><td>" + data[x].photo + 
-                                                        "</td><td>" + data[x].licenseNumber + 
-                                                        "</td><td>" + (data[x].licenseValidity).substring(0, 10) + 
-                                                        "</td><td><button id='chooseUser' class='btn btn-outline-secondary' value="+data[x].personId+">Izaberi korisnika</button></td></tr></tbody>");
-                                                
-                                                
-                     */                           
-                    var table = $('#example1').DataTable();
+/////////////////////////////////////////////////////////////////////////
+//-------------------TABLE-------------------------------------------
+    if ($('#example1').length > 0) {
+        $.ajax({
+            url: 'http://ucenickidomovi.pis.rs/VetWebService/api/person',
+            dataType: 'json',
+            beforeSend: function () {
+                $('#example').html('<img src="https://i.gifer.com/7YQl.gif">');
+            }
+        })
+                .done(function (data) {
+                    //$('#example').empty();
+                    console.log(data);
+                    
+                    for (var x in data) {
+                        var table = $('#example1').DataTable();
+                        var table_rows = '<tr><td>' + data[x].name +
+                                        '</td><td>' + data[x].lastName +
+                                        '</td><td>' + data[x].title +
+                                        '</td><td>' + (data[x].dateOfBirth).substring(0, 10) +
+                                        '</td><td><img src="https://api.adorable.io/avatars/150x150/abott@adorable.png">\n\
+                                        </td><td>' + data[x].licenseNumber +
+                                        '</td><td>' + (data[x].licenseValidity).substring(0, 10) + '</td>\n\
+                                      <td><button id="chooseUser" class="btn btn-outline-secondary" value=' + data[x].personId + '>Izaberi korisnika</button></td></tr>';
+                        table.rows.add($(table_rows)).draw();
+                    }
 
-                    var table_rows = '<tr><td>'+data[x].name+
-                                     '</td><td>'+ data[x].lastName + 
-                                     '</td><td>'+ data[x].title +
-                                     '</td><td>'+ (data[x].dateOfBirth).substring(0, 10) +
-                                     '</td><td><img src="https://api.adorable.io/avatars/150x150/abott@adorable.png">\n\
-                                        </td><td>'+ data[x].licenseNumber + 
-                                     '</td><td>'+ (data[x].licenseValidity).substring(0, 10) +'</td>\n\
-                                      <td><button id="chooseUser" class="btn btn-outline-secondary" value='+data[x].personId+'>Izaberi korisnika</button></td></tr>';
-
-                    table.rows.add($(table_rows)).draw();
-                }
-                
-            })
-            .fail(function (jqXHR, statusText) {
-                $('#example1').text(jqXHR.status + '-' + jqXHR.statusText + '-' + statusText);
-            });
-            /*
-            $("#myInput").on("keyup", function() {
-                var value = $(this).val().toLowerCase();
-                //console.log(value);
-                $("#myTable tr").filter(function() {
-                  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                })
+                .fail(function (jqXHR, statusText) {
+                    $('#example1').text(jqXHR.status + '-' + jqXHR.statusText + '-' + statusText);
                 });
-                
-            });*/
-    
-    
-    ///////////////////////////////////////////////
-    
-    /////////////////////////////////////////////////////////////////////////
-   //-------------------ChooseUser-------------------------------------------
-    $("#example1").on("click","#chooseUser" , function(){
+
+    }
+///////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////
+//-------------------ChooseUser-------------------------------------------
+    $("#example1").on("click", "#chooseUser", function () {
         //alert("RADI" + $(this).val());
         //this will redirect us in same window
         var url = 'http://localhost:8383/VETKS/UserInfo.html';
@@ -241,6 +213,152 @@ $(document).ready(function () {
         url += encodedUrlParameter;
         document.location.href = url;
     });
-   /////////////////////////////////////////////////////////////////////////
-   
+    /////////////////////////////////////////////////////////////////////////
+
+
+    ///////////----------------VALIDATE USER FORM-------------------------
+    if ($('.calendar').length > 0) {
+        $(function () {
+            $(".calendar").datepicker({
+                showAnim: 'slideDown',
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: 'yy-mm-dd',
+                yearRange: '1950:2050'
+            });
+        });
+    }
+
+
+//---------------------Call Ajax on btnInsert---------------------
+
+    $("#btnSubmit").click(function () {
+
+        var contactForm = $("#contact-form-id");
+        contactForm.validate({
+            highlight: function (element) {
+                $(element).closest('.form-group').addClass("has-danger");
+                $(element).addClass("form-control-danger");
+            },
+            unhighlight: function (element) {
+                $(element).closest('.form-group').removeClass('has-danger').addClass('has-success');
+                $(element).removeClass('form-control-danger').addClass('form-control-success');
+            },
+            rules: {
+                name: {
+                    required: true,
+                    rangelength: [2, 20]
+                },
+                lastName: {
+                    required: true,
+                    rangelength: [2, 20]
+                },
+                title: {
+                    required: true,
+                    rangelength: [2, 20]
+                },
+                dateOfBirth: {
+                    required: true
+                },
+                licenseNumber: {
+                    required: true,
+                    rangelength: [2, 20]
+                },
+                licenseValidity: {
+                    required: true,
+                    rangelength: [2, 20]
+                }
+            },
+            messages: {
+                name: {
+                    required: 'Ime je obavezno.',
+                    rangelength: 'Ime mora biti izmedju 2 i 20 karaktera.'
+                },
+                lastName: {
+                    required: 'Prezime je obavezno.',
+                    rangelength: 'Prezime mora biti izmedju 2 i 20 karaktera.'
+                },
+                title: {
+                    required: 'Polje titula je obavezno.',
+                    rangelength: 'Polje titula mora biti izmedju 2 i 20 karaktera.'
+                },
+                dateOfBirth: {
+                    required: 'Polje datum rodjenja je obavezno.'
+                },
+                licenseNumber: {
+                    required: 'Polje broj licence je obavezno.',
+                    rangelength: 'Polje broj licence mora biti izmedju 2 i 20 karaktera.'
+                },
+                licenseValidity: {
+                    required: 'Rok važenja licence je obavezno.'
+                }
+
+            },
+            errorElement: 'p',
+            errorPlacement: function (error, element) {
+                error.appendTo($(element).closest('.form-group').find('.error-msg'));
+            }
+
+        });
+        /////////////////////////////////////////////////////////////////////////
+
+        if (contactForm.valid()) {
+            var SendInfo = {name: $('#txt_name').val(),
+                lastName: $('#txt_lastName').val(),
+                title: $('#txt_title').val(),
+                dateOfBirth: $('#txt_dateOfBirth').val(),
+                licenseNumber: $('#txt_licenseNumber').val(),
+                licenseValidity: $('#txt_licenseValidity').val()};
+            
+            console.log('Parametri za upis - name: ' + $('#txt_name').val() +
+                    ' lastName: ' + $('#txt_lastName').val(),
+                    ' title: ' + $('#txt_title').val(),
+                    ' dateOfBirth: ' + $('#txt_dateOfBirth').val(),
+                    ' licenseNumber: ' + $('#txt_licenseNumber').val(),
+                    ' licenseValidity: ' + $('#txt_licenseValidity').val());
+
+            $.ajax({
+                type: 'post',
+                url: 'http://ucenickidomovi.pis.rs/VetWebService/api/person',
+                data: JSON.stringify(SendInfo),
+                contentType: "application/json; charset=utf-8",
+                dataType: 'json',
+                beforeSend:function(){
+                        $('#user-profile').html('<img src="https://i.gifer.com/7YQl.gif">');
+                    },
+                success: function (response) {
+                    // successful request; 
+                    console.log('Uspešno - ' + response);
+                    $('#user-profile').empty();
+                    $('#user-profile').html('<p><strong>Uspešno upisani podaci!</strong></p>');
+                    successAlertInsertUser();
+                },
+                error: function () {
+                    // failed request;
+                    $('#user-profile').html('<p class="error"><strong>Greška!</strong> Pokušajte ponovo kasnije.</p>');
+                    successAlertErrorInsertUser();
+                }
+            });
+
+        }
+    });
+    //////////////////////////////////////////////////////////////////
+    
+    
+    ////-------------------SWEETALERT-------------------------------
+    function successAlertInsertUser() {
+        swal({
+            title:'Podaci su uspešno upisani.',
+            text: 'Pritisnite odgovarajuće dugme na dnu forme.',
+            type: 'OK'
+        });
+    }
+    function successAlertErrorInsertUser() {
+        swal({
+            title:'Greška.',
+            text: 'Pokušajte ponovo kasnije.',
+            type: 'OK'
+        });
+    }
+    
 });

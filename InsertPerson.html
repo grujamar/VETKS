@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="en">
+    <head>
+        <title>Veterinarska komora</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Marko Grujic - PIS">
+        <meta name="description" content="Veterinarska komora - Prijava">
+        <meta name="keywords" content="Veterinarska, komora, Prijava">
+        <!--iOS compatibile-->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-title" content="Site Title">
+        <link rel="apple-touch-icon" href="putanja do ikonice favicon li neke">        
+        <!--Android compatibile-->
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="aplication-name" content="Site Title">
+        <link rel="icon" type="icon/png" href="putanja do ikonice favicon li neke">
+        <!--FONTOVI Awesome-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!--bootstrap-->
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <!--external css, like plugins ...-->
+        <!--jQuery UI-->
+        <link href="css/jquery-ui.css" rel="stylesheet" type="text/css"/>
+        <link href="css/jquery-ui.theme.css" rel="stylesheet" type="text/css"/>
+        <!--theme css-->
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
+        <link href="css/responsive.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <!--header start-->
+        <header id="main-header" class="py-3 position-relative" style="background-image: linear-gradient(to right, rgba(192, 192, 192,0.9), rgba(192, 192, 192,0.9))">
+            <div class="container">
+                <nav class="navbar navbar-expand navbar-light">
+                    <a class="navbar-brand" href="#">
+                        <img src="img/logo.png" class="d-inline-block align-top" alt="logo"/>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" >
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="main-nav">
+                        <ul class="navbar-nav ml-auto text-capitalize">
+
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="hor-navbar">
+                <ul>
+                    <li><a class="active" href="index.html">Članovi</a></li>
+                    <li><a href="#news">Članske kartice</a></li>
+                    <li><a href="#contact">Licence</a></li>
+                    <li style="float: right;"><a href="login.html">Odjava</a></li>
+                </ul>
+            </div>
+        </header><!--header end-->
+        <!--main start-->
+        <main>
+            <div class="container">
+                <section class="my-5">
+                    <div class="row">
+                        <article class="col-12">
+                            <ul class="nav nav-pills nav-fill" id="product-description" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#user-info" role="tab" aria-controls="home" aria-selected="true">
+                                        <span class="fa fa-user mr-2"></span>
+                                        Profil
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#card-info" role="tab" aria-controls="profile" aria-selected="false">
+                                        <span class="fa fa-id-card-o mr-2"></span>
+                                        Kartica
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#license-info" role="tab" aria-controls="contact" aria-selected="false">
+                                        <span class="fa fa-certificate mr-2"></span>
+                                        Diploma
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="tab-content bg-white" id="product-description-content">
+                                <div id="user-info" class="tab-pane fade show active" role="tabpanel" aria-labelledby="home-tab">
+                                    <div class="row">
+                                        <aside id="user-img" class="col-12 col-md-4 text-center">
+
+                                        </aside>
+                                        <article id="user-profile" class="col-12 col-md-8">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <h4 class="pb-4">Upiši lične podatke</h4>
+                                                    <form id="contact-form-id" class="contact-form" method="post" action="">
+                                                        <div class="form-group">
+                                                            <label>Ime<span class="text-danger pl-2">*</span></label>
+                                                            <input id="txt_name" type="text" name="name" value="" class="form-control">
+                                                            <div class="error-msg"></div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Prezime<span class="text-danger pl-2">*</span></label>
+                                                            <input id="txt_lastName" type="text" name="lastName" value="" class="form-control">
+                                                            <div class="error-msg"></div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Titula<span class="text-danger pl-2">*</span></label>
+                                                            <input id="txt_title" type="text" name="title" value="" class="form-control">
+                                                            <div class="error-msg"></div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Datum rodjenja<span class="text-danger pl-2">*</span></label>
+                                                            <input id="txt_dateOfBirth" type="text" name="dateOfBirth" value="" class="form-control calendar">
+                                                            <div class="error-msg"></div>
+                                                        </div>                                                       
+                                                        <div class="form-group">
+                                                            <label>Broj Licence<span class="text-danger pl-2">*</span></label>
+                                                            <input id="txt_licenseNumber" type="text" name="licenseNumber" value="" class="form-control">
+                                                            <div class="error-msg"></div>
+                                                        </div>                                                        
+                                                        <div class="form-group">
+                                                            <label>Rok važenja licence<span class="text-danger pl-2">*</span></label>
+                                                            <input id="txt_licenseValidity" type="text" name="licenseValidity" value="" class="form-control calendar">
+                                                            <div class="error-msg"></div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <button id="btnSubmit" class="btn btn-info px-4" type="submit" name="buttonSend" value="send">POSALJI</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </article>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="card-info" role="tabpanel" aria-labelledby="profile-tab">Tab 2</div>
+                                <div class="tab-pane fade" id="license-info" role="tabpanel" aria-labelledby="contact-tab">Tab 3</div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+            </div>
+        </main><!--main end-->
+        <!--SCRIPTS goes here-->
+        <!--First jquery, then popper and finaly bootstrap-->
+        <script src="js/jquery.min.js" type="text/javascript"></script>
+        <script src="js/popper.js" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <!--jquery plugins-->
+        <script src="js/jquery.validate.min.js" type="text/javascript"></script>
+        <script src="js/jquery-ui.min.js" type="text/javascript"></script>
+        <script src="js/sweetalert.js" type="text/javascript"></script>
+        <!--All page js-->
+        <script src="js/main.js" type="text/javascript"></script>
+    </body>
+</html>
