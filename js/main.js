@@ -173,31 +173,48 @@ $(document).ready(function () {
         $.ajax({
             url: 'http://ucenickidomovi.pis.rs/VetWebService/api/person',
             dataType: 'json',
+            cache: false,
             beforeSend: function () {
-                $('#example').html('<img src="https://i.gifer.com/7YQl.gif">');
-            }
-        })
-                .done(function (data) {
-                    //$('#example').empty();
-                    console.log(data);
-                    
-                    for (var x in data) {
-                        var table = $('#example1').DataTable();
-                        var table_rows = '<tr><td>' + data[x].name +
-                                        '</td><td>' + data[x].lastName +
-                                        '</td><td>' + data[x].title +
-                                        '</td><td>' + (data[x].dateOfBirth).substring(0, 10) +
-                                        '</td><td><img src="https://api.adorable.io/avatars/150x150/abott@adorable.png">\n\
-                                        </td><td>' + data[x].licenseNumber +
-                                        '</td><td>' + (data[x].licenseValidity).substring(0, 10) + '</td>\n\
-                                      <td><button id="chooseUser" class="btn btn-outline-secondary" value=' + data[x].personId + '>Izaberi korisnika</button></td></tr>';
-                        table.rows.add($(table_rows)).draw();
-                    }
-
-                })
-                .fail(function (jqXHR, statusText) {
-                    $('#example1').text(jqXHR.status + '-' + jqXHR.statusText + '-' + statusText);
+                $('#example1').hide();
+                }
+            })
+            .done(function (data) {
+                //$('#example').empty();
+                //console.log(data);
+                /*
+                 for (var x in data) {
+                 var table = $('#example1').DataTable();
+                 var table_rows = '<tr><td>' + data[x].name +
+                 '</td><td>' + data[x].lastName +
+                 '</td><td>' + data[x].title +
+                 '</td><td>' + (data[x].dateOfBirth).substring(0, 10) +
+                 '</td><td><img src="https://api.adorable.io/avatars/150x150/abott@adorable.png">\n\
+                 </td><td>' + data[x].licenseNumber +
+                 '</td><td>' + (data[x].licenseValidity).substring(0, 10) + '</td>\n\
+                 <td><button id="chooseUser" class="btn btn-outline-secondary" value=' + data[x].personId + '>Izaberi korisnika</button></td></tr>';
+                 table.rows.add($(table_rows)).draw();
+                 }
+                */
+               $('#example1').show();
+                var data1 = [];
+                for (var x in data) {
+                    data1.push([data[x].name, data[x].lastName, data[x].title, (data[x].dateOfBirth).substring(0, 10), '<img src="https://api.adorable.io/avatars/150x150/abott@adorable.png">', data[x].licenseNumber,(data[x].licenseValidity).substring(0, 10), '<button id="chooseUser" class="btn btn-outline-secondary" value=' + data[x].personId + '>Izaberi korisnika</button>']);
+                }
+                $('#example1').DataTable({
+                    data: data1,
+                    lengthMenu: [[10, 25, 50, 100], [10, 25, 50, 100]],
+                    scrollY: false,
+                    scrollX: false,
+                    initComplete: function( settings, json ) {
+                        
+                        $('div.loading').remove();
+                        
+                      }
                 });
+            })
+            .fail(function (jqXHR, statusText) {
+                $('#example1').text(jqXHR.status + '-' + jqXHR.statusText + '-' + statusText);
+            });
 
     }
 ///////////////////////////////////////////////
@@ -309,7 +326,7 @@ $(document).ready(function () {
                 dateOfBirth: $('#txt_dateOfBirth').val(),
                 licenseNumber: $('#txt_licenseNumber').val(),
                 licenseValidity: $('#txt_licenseValidity').val()};
-            
+
             console.log('Parametri za upis - name: ' + $('#txt_name').val() +
                     ' lastName: ' + $('#txt_lastName').val(),
                     ' title: ' + $('#txt_title').val(),
@@ -323,9 +340,9 @@ $(document).ready(function () {
                 data: JSON.stringify(SendInfo),
                 contentType: "application/json; charset=utf-8",
                 dataType: 'json',
-                beforeSend:function(){
-                        $('#user-profile').html('<img src="https://i.gifer.com/7YQl.gif">');
-                    },
+                beforeSend: function () {
+                    $('#user-profile').html('<img src="https://i.gifer.com/7YQl.gif">');
+                },
                 success: function (response) {
                     // successful request; 
                     console.log('Uspešno - ' + response);
@@ -343,22 +360,22 @@ $(document).ready(function () {
         }
     });
     //////////////////////////////////////////////////////////////////
-    
-    
+
+
     ////-------------------SWEETALERT-------------------------------
     function successAlertInsertUser() {
         swal({
-            title:'Podaci su uspešno upisani.',
+            title: 'Podaci su uspešno upisani.',
             text: 'Pritisnite odgovarajuće dugme na dnu forme.',
             type: 'OK'
         });
     }
     function successAlertErrorInsertUser() {
         swal({
-            title:'Greška.',
+            title: 'Greška.',
             text: 'Pokušajte ponovo kasnije.',
             type: 'OK'
         });
     }
-    
+
 });
