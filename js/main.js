@@ -173,7 +173,6 @@ $(document).ready(function () {
         $.ajax({
             url: 'http://ucenickidomovi.pis.rs/VetWebService/api/person',
             dataType: 'json',
-            cache: false,
             beforeSend: function () {
                 $('#example1').hide();
                 }
@@ -198,7 +197,14 @@ $(document).ready(function () {
                $('#example1').show();
                 var data1 = [];
                 for (var x in data) {
-                    data1.push([data[x].name, data[x].lastName, data[x].title, (data[x].dateOfBirth).substring(0, 10), '<img src="https://api.adorable.io/avatars/150x150/abott@adorable.png">', data[x].licenseNumber,(data[x].licenseValidity).substring(0, 10), '<button id="chooseUser" class="btn btn-outline-secondary" value=' + data[x].personId + '>Izaberi korisnika</button>']);
+                    data1.push([data[x].name, 
+                                data[x].lastName, 
+                                data[x].title, 
+                                (data[x].dateOfBirth).substring(8, 10) + '-' + (data[x].dateOfBirth).substring(5, 7) + '-' + (data[x].dateOfBirth).substring(0, 4), 
+                                '<img src="https://api.adorable.io/avatars/150x150/abott@adorable.png">', 
+                                data[x].licenseNumber,
+                                (data[x].licenseValidity).substring(8, 10) + '-' + (data[x].licenseValidity).substring(5, 7) + '-' + (data[x].licenseValidity).substring(0, 4),
+                                '<button id="chooseUser" class="btn btn-outline-secondary" value=' + data[x].personId + '>Izaberi korisnika</button>']);
                 }
                 $('#example1').DataTable({
                     data: data1,
