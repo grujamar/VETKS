@@ -168,7 +168,7 @@ $(document).ready(function () {
      });
      */
 /////////////////////////////////////////////////////////////////////////
-//-------------------TABLE-------------------------------------------
+//-------------------TABLE USERS-------------------------------------------
     if ($('#example1').length > 0) {
         $.ajax({
             url: 'http://ucenickidomovi.pis.rs/VetWebService/api/person',
@@ -254,7 +254,7 @@ $(document).ready(function () {
 
 
 //---------------------Call Ajax on btnInsert---------------------
-
+//----------------------------------------------------------------
     $("#btnSubmit").click(function () {
 
         var contactForm = $("#contact-form-id");
@@ -353,7 +353,7 @@ $(document).ready(function () {
                     // successful request; 
                     console.log('Uspešno - ' + response);
                     $('#user-profile').empty();
-                    $('#user-profile').html('<p><strong>Uspešno upisani podaci!</strong></p>');
+                    $('#user-profile').html('<p><strong>Uspešno upisani podaci!</strong></p><a href="InsertPerson.html" class="">nazad</a>');
                     successAlertInsertUser();
                 },
                 error: function () {
@@ -366,13 +366,14 @@ $(document).ready(function () {
         }
     });
     //////////////////////////////////////////////////////////////////
-
+    /////////////////////////////////////////////////////////////////
 
     ////-------------------SWEETALERT-------------------------------
+    /////////////////////////////////////////////////////////////////
     function successAlertInsertUser() {
         swal({
             title: 'Podaci su uspešno upisani.',
-            text: 'Pritisnite odgovarajuće dugme na dnu forme.',
+            text: '',
             type: 'OK'
         });
     }
@@ -383,5 +384,70 @@ $(document).ready(function () {
             type: 'OK'
         });
     }
+    /////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////
+    
+    
+    
+    /////////////////////////////////////////////////////////////////////////
+    //-------------------TABLE CARDS-------------------------------------------
+    if ($('#exampleCards').length > 0) {
+        $.ajax({
+            url: 'http://ucenickidomovi.pis.rs/VetWebService/api/Cards',
+            dataType: 'json',
+            beforeSend: function () {
+                $('#exampleCards').hide();
+                }
+            })
+            .done(function (data) {
+               $('#exampleCards').show();
+                var data1 = [];
+                
+                for (var x in data) {
+                    data1.push([data[x].cardNumber, 
+                                (data[x].cardValidity).substring(8, 10) + '-' + (data[x].cardValidity).substring(5, 7) + '-' + (data[x].cardValidity).substring(0, 4),
+                                cardStatus(data[x].status), 
+                                (data[x].lastUpdateTime).substring(8, 10) + '-' + (data[x].lastUpdateTime).substring(5, 7) + '-' + (data[x].lastUpdateTime).substring(0, 4),
+                                '<button id="chooseCard" class="btn btn-outline-secondary" value=' + data[x].personId + '>Izaberi korisnika</button>']);
+                }
+                $('#exampleCards').DataTable({
+                    data: data1,
+                    lengthMenu: [[10, 25, 50, 100], [10, 25, 50, 100]],
+                    scrollY: false,
+                    scrollX: false,
+                    initComplete: function( settings, json ) {  
+                        $('div.loading').remove(); 
+                      }
+                });
+            })
+            .fail(function (jqXHR, statusText) {
+                    $('#exampleCards').text(jqXHR.status + '-' + jqXHR.statusText + '-' + statusText);
+            });
+    }
+    
+    function cardStatus(jsonStatus){
+        if (jsonStatus === true){
+            return "Aktivna";
+        }else{
+            return "Neaktivna";
+        }
+        
+    }
+    /////////////////////////////////////////////////////////////////////////
 
+    /////////////////////////////////////////////////////////////////////////
+    //-------------------ChooseCard-------------------------------------------
+    $("#exampleCards").on("click", "#chooseCard", function () {
+        //alert("RADI" + $(this).val());
+        //this will redirect us in same window
+        var url = 'http://localhost:8383/VETKS/UserInfo.html';
+        urlParameter = "?personid=" + $(this).val();
+        var encodedUrlParameter = encodeURIComponent(urlParameter);
+        url += encodedUrlParameter;
+        document.location.href = url;
+    });
+    /////////////////////////////////////////////////////////////////////////
+    
+    
+    
 });

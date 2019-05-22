@@ -486,13 +486,18 @@ table thead th{
 
 
 /*Image on choose user*/
-#user-img figure img{
+#user-img figure img,
+#card-info span{
     width: 200px;
     height: 200px;
     border-radius: 50%;
     overflow: hidden;
     margin: 0 auto 1rem;
 }
+
+#card-info .fa{
+    font-size: 100px;
+} 
 
 /*btnInserPerson*/
 
@@ -543,9 +548,15 @@ table thead th{
     background: -ms-linear-gradient(top, #203963 0%, #111 100%) !important;
     background: -o-linear-gradient(top, #203963 0%, #111 100%) !important;
     background: linear-gradient(to bottom, #203963 0%, #111 100%) !important;
-
 }
 
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover{
+    color: #fff !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
+    color: #fff !important;
+}
 
 .animated-gif{
     width: 60px;

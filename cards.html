@@ -51,8 +51,8 @@ and open the template in the editor.
             </div>
             <div class="hor-navbar">
                 <ul>
-                    <li><a class="active" href="index.html">Članovi</a></li>
-                    <li><a href="cards.html">Članske kartice</a></li>
+                    <li><a href="index.html">Članovi</a></li>
+                    <li><a class="active" href="cards.html">Članske kartice</a></li>
                     <li><a href="#contact">Licence</a></li>
                     <li style="float: right;"><a href="login.html">Odjava</a></li>
                 </ul>
@@ -63,35 +63,28 @@ and open the template in the editor.
             <div class="container-fluid container-table">
                 <section class="section-table my-5">             
                     <div class="row">
-                        <!--div search start-->
+                        <!--div insert start-->
                         <div class="col-12 col-md-4 mb-1">
                         </div>
                         <div class="col-12 col-md-4 mb-1 mb-4 text-center">
-                            <a ID="btnInsertPerson" href="InsertPerson.html" class="btn btn-outline-info"><span class="fa fa-angle-double-right pr-2"></span>Upiši novog člana<span class="fa fa-angle-double-left pl-2"></span></a>
+                            <!--<a ID="btnInsertPerson" href="InsertPerson.html" class="btn btn-outline-info"><span class="fa fa-angle-double-right pr-2"></span>Upiši novog člana<span class="fa fa-angle-double-left pl-2"></span></a>-->
                         </div>
                         <div class="col-12 col-md-4 mb-1">
-                        </div><!--div search end-->
+                        </div><!--div insert end-->
                     </div>
-                    <!--<input id="myInput" type="text" value="" class="search-table mb-3" placeholder="Pretraži">-->
-                    <!--table start-->
-                    <!--<table id="example" class="table table-striped table-borderless">
-                    </table>--><!--table end-->
                     <div class="loading text-center mt-5">
                         <h2>Molimo Vas sačekajte da se učitaju podaci..</h2>
                         <img src="images/throbber.gif" class="animated-gif">
                     </div>
                     <div class="table-responsive"> 
                         <!--table start-->
-                        <table id="example1" class="display cell-border" style="display:none;">
+                        <table id="exampleCards" class="display cell-border" style="display:none;">
                             <thead>
                                 <tr>
-                                    <th>Ime</th>
-                                    <th>Prezime</th>
-                                    <th>Titula</th>
-                                    <th>Datum rođenja</th>
-                                    <th>Fotografija</th>
-                                    <th>Broj licence</th>
-                                    <th>Rok važenja licence</th>
+                                    <th>Broj kartice</th>
+                                    <th>Rok važenja kartice</th>
+                                    <th>Status</th>
+                                    <th>Poslednji put ažurirana</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -99,13 +92,10 @@ and open the template in the editor.
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th>Ime</th>
-                                    <th>Prezime</th>
-                                    <th>Titula</th>
-                                    <th>Datum rodjenja</th>
-                                    <th>Fotografija</th>
-                                    <th>Broj Licence</th>
-                                    <th>Rok važenja licence</th>
+                                    <th>Broj kartice</th>
+                                    <th>Rok važenja kartice</th>
+                                    <th>Status</th>
+                                    <th>Poslednji put ažurirana</th>
                                     <th></th>
                                 </tr>
                             </tfoot>
