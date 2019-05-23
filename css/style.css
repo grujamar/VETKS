@@ -500,6 +500,9 @@ table thead th{
 } 
 
 /*btnInserPerson*/
+#btnInsertPerson {
+    font-size: 18px;
+}
 
 .btn-outline-info{
     color: #203963 !important;
@@ -523,9 +526,7 @@ table thead th{
 }
 
 .btn-outline-info:focus, .btn-outline-info.focus {
-
     box-shadow: 0 0 0 0.2rem rgba(32, 57, 99, 0.5) !important;
-
 }
 
 /*PAGINATION*/
