@@ -25,8 +25,8 @@ $(document).ready(function () {
             url: "http://ucenickidomovi.pis.rs/VetWebService/api/person/" + personID,
             dataType: 'json',
             beforeSend: function () {
-                $('#user-profile').html('<img src="https://i.gifer.com/7YQl.gif">');
-                $('#card-profile').html('<img src="https://i.gifer.com/7YQl.gif">');
+                //$('#user-info').html('<img src="https://i.gifer.com/7YQl.gif">');
+                //$('#card-info').html('<img src="https://i.gifer.com/7YQl.gif">');
             }
         })
                 .done(function (data) {
@@ -46,6 +46,9 @@ $(document).ready(function () {
                     } else {
                         $('#user-profile').append('<div class="row"><div class="col-md-4"><label class="font-weight-bold">Status</label></div><div class="col-md-8 text-danger">Neaktivan</div></div><hr>');
                     }
+                      
+                    $('div.loading').remove(); 
+                    
                     /******************************CARDS INFO***********************/
                     $('#card-img').empty();
                     $('#card-profile').empty();
@@ -57,6 +60,8 @@ $(document).ready(function () {
                         //console.log('Usao ovde ' + data.Cards.length);
                         showCardInfoBasedOnLength(data.Cards[0].CardNumber, data.Cards[0].CardValidity, data.Cards[0].LastUpdateTime, data.Cards[0].Status);
                     }
+                    
+                    $('div.loading').remove();
                     /******************************Diploma INFO***********************/
                     var data1 = [];
 
@@ -75,7 +80,10 @@ $(document).ready(function () {
                         scrollX: false,
                         scrollCollapse: true,
                         paging: false,
-                        searching: false
+                        searching: false,
+                        initComplete: function( settings, json ) {  
+                            $('div.loading').remove(); 
+                          }
                     });
 
 

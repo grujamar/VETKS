@@ -563,3 +563,14 @@ table thead th{
     width: 60px;
     height: auto;
 }
+
+#user-info .loading,
+#card-info .loading{
+    margin: 0 auto;
+}
+
+#user-info .animated-gif,
+#card-info .animated-gif{
+    width: 50px;
+    height: auto;
+}

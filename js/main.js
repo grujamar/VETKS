@@ -347,13 +347,13 @@ $(document).ready(function () {
                 contentType: "application/json; charset=utf-8",
                 dataType: 'json',
                 beforeSend: function () {
-                    $('#user-profile').html('<img src="https://i.gifer.com/7YQl.gif">');
+                    $('#user-info').html('<div class="loading text-center mt-5"><h4>Molimo Vas sačekajte da se upišu podaci..</h4><img src="images/throbber.gif" class="animated-gif"></div>');
                 },
                 success: function (response) {
                     // successful request; 
                     console.log('Uspešno - ' + response);
-                    $('#user-profile').empty();
-                    $('#user-profile').html('<p><strong>Uspešno upisani podaci!</strong></p><a href="InsertPerson.html" class="">nazad</a>');
+                    $('#user-info').empty();
+                    $('#user-info').html('<div class="row"><aside id="user-img" class="col-12 col-md-3 text-center"></aside><article id="user-profile" class="col-12 col-md-9"><p><strong>Uspešno upisani podaci!</strong></p><a href="InsertPerson.html" class="">nazad</a></article></div>');
                     successAlertInsertUser();
                 },
                 error: function () {
