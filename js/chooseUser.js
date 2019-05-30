@@ -2,14 +2,14 @@ $(document).ready(function () {
 
     function GetURLParameter(sParam) {
         var urlCurrent = $(location).attr('href'); //get current url
-        //console.log(urlCurrent);
+        //console.log('Korak 1 + ' + urlCurrent);
         var decodedUrl = decodeURIComponent(urlCurrent);
-        //console.log(decodedUrl);
+        //console.log('Korak 2 + ' + decodedUrl);
         var substring = decodedUrl.substring(decodedUrl.indexOf('?') + 1);
         var sURLVariables = substring.split('&');
         for (var i = 0; i < sURLVariables.length; i++) {
             var sParameterName = sURLVariables[i].split('=');
-            //console.log(sParameterName);
+            //console.log('Korak 3 + ' + sParameterName);
             if (sParameterName[0] === sParam) {
                 return sParameterName[1];
             }
@@ -108,7 +108,6 @@ $(document).ready(function () {
             $('#card-profile').append('<div class="row"><div class="col-lg-4"><label class="font-weight-bold">Status</label></div><div class="col-lg-8 text-danger">Neaktivna kartica</div></div><hr>');
         }
     }
-
 
 
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
