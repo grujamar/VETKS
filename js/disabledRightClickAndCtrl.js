@@ -37,7 +37,7 @@ function disableCtrlKeyCombination(e) {
         for (i = 0; i < forbiddenKeys.length; i++) {
             //case-insensitive comparation
             if (forbiddenKeys[i].toLowerCase() == String.fromCharCode(key).toLowerCase()) {
-                alert('Key combination CTRL + ' + String.fromCharCode(key) + ' has been disabled.');
+                //alert('Key combination CTRL + ' + String.fromCharCode(key) + ' has been disabled.');
                 return false;
             }
         }
@@ -54,7 +54,7 @@ document.onkeypress = function (event) {
     if (event.ctrlKey &&
         (event.keyCode === 85 ||
             event.keyCode === 123)) {
-        alert('not allowed');
+        //alert('not allowed');
         return false;
     }
 }
@@ -67,7 +67,7 @@ document.onmousedown = function (event) {
     if (event.ctrlKey &&
         (event.keyCode === 85 ||
             event.keyCode === 123)) {
-        alert('not allowed');
+        //alert('not allowed');
         return false;
     }
 }
@@ -80,7 +80,7 @@ document.onkeydown = function (event) {
     if (event.ctrlKey &&
         (event.keyCode === 85 ||
             event.keyCode === 123)) {
-        alert('not allowed');
+        //alert('not allowed');
         return false;
     }
 };
