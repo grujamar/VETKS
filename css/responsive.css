@@ -12,12 +12,22 @@
     #main-header img{
         width: 70%;
     }
+    
+    #user-img figure img,
+    #card-info span{
+        width: 150px;
+        height: 150px;
+    }
 
 }
 
 @media(min-width:992px){
 
-    
+    #user-img figure img,
+    #card-info span{
+        width: 200px;
+        height: 200px;
+    }
 
 
 }
