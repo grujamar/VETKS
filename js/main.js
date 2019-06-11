@@ -1,5 +1,14 @@
 $(document).ready(function () {
     
+    //console.log('Session storage is ' + sessionStorage["data.token"] + ' .Length ' + sessionStorage.length );
+    //Chekc if URL contains string index.html
+    console.log('Stranica + ' + window.location.href.indexOf("index.html") > -1);
+    if (window.location.href.indexOf("index.html") > -1 || window.location.href.indexOf("InsertPerson.html") > -1 || window.location.href.indexOf("cards.html") > -1) {
+        if (sessionStorage.length == 0) {
+            window.location= 'http://localhost:8383/VETKS/login.html';
+        }
+    }
+    
     ////-------------------SWEETALERT-------------------------------
     /////////////////////////////////////////////////////////////////
     function successAlertInsertUser() {
@@ -12,13 +21,6 @@ $(document).ready(function () {
     function successAlertErrorInsertUser() {
         swal({
             title: 'Greška.',
-            text: 'Pokušajte ponovo kasnije.',
-            type: 'OK'
-        });
-    }
-    function successAlertErrorLoginUser() {
-        swal({
-            title: 'Greška prilikom prijave.',
             text: 'Pokušajte ponovo kasnije.',
             type: 'OK'
         });
@@ -87,13 +89,13 @@ $(document).ready(function () {
                 data: JSON.stringify(user),
                 contentType: "application/json",
                 beforeSend: function () {
-                    $('#user-login-form-group').html('<div class="loading text-center mt-5"><h4>Molimo Vas sačekajte da se upišu podaci..</h4><img src="images/throbber.gif" class="animated-gif"></div>');
+                    $('.user-login-inner').html('<div class="loading text-center mt-5"><h4>Molimo Vas sačekajte..</h4><img src="images/throbber.gif" class="animated-gif"></div>');
                     //$('#user-login-form-group').html('<img src="https://i.gifer.com/7YQl.gif">');
                 }
             })
                 .done(function(data){
                     console.log(data);
-                    localStorage["data.token"] = data.token;
+                    sessionStorage["data.token"] = data.token;
                     
                      $.ajax({
                         type: 'GET',
@@ -121,10 +123,10 @@ $(document).ready(function () {
 /////////////////////////////////////////////////////////////////////////
 //-------------------TABLE USERS-------------------------------------------
     if ($('#example1').length > 0) {
-        console.log("Token vetks" + localStorage["data.token"]);
+        console.log("Token vetks" + sessionStorage["data.token"]);
         $.ajax({
             url: 'http://ucenickidomovi.pis.rs/VetWebService/api/person',
-            headers: {"Authorization": 'Bearer ' + localStorage["data.token"]},
+            headers: {"Authorization": 'Bearer ' + sessionStorage["data.token"]},
             dataType: 'json',
             beforeSend: function () {
                 $('#example1').hide();
@@ -281,6 +283,7 @@ $(document).ready(function () {
             $.ajax({
                 type: 'post',
                 url: 'http://ucenickidomovi.pis.rs/VetWebService/api/person',
+                headers: {"Authorization": 'Bearer ' + sessionStorage["data.token"]},
                 data: JSON.stringify(SendInfo),
                 contentType: "application/json; charset=utf-8",
                 dataType: 'json',
@@ -311,6 +314,7 @@ $(document).ready(function () {
     if ($('#exampleCards').length > 0) {
         $.ajax({
             url: 'http://ucenickidomovi.pis.rs/VetWebService/api/Cards',
+            headers: {"Authorization": 'Bearer ' + sessionStorage["data.token"]},
             dataType: 'json',
             beforeSend: function () {
                 $('#exampleCards').hide();
@@ -363,7 +367,5 @@ $(document).ready(function () {
         document.location.href = url;
     });
     /////////////////////////////////////////////////////////////////////////
-    
-    
     
 });

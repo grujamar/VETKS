@@ -1,5 +1,13 @@
 $(document).ready(function () {
 
+    //console.log('Session storage is ' + sessionStorage["data.token"] + ' .Length ' + sessionStorage.length );
+    if ( window.location.href.indexOf("UserInfo.html") > -1) {
+        if (sessionStorage.length == 0) {
+            window.location= 'http://localhost:8383/VETKS/login.html';
+        }
+    }
+    
+    ///////////////////////////////////////////////////////////////////
     function GetURLParameter(sParam) {
         var urlCurrent = $(location).attr('href'); //get current url
         //console.log('Korak 1 + ' + urlCurrent);
@@ -23,6 +31,7 @@ $(document).ready(function () {
     function callAjaxUserInfo(personID) {
         $.ajax({
             url: "http://ucenickidomovi.pis.rs/VetWebService/api/person/" + personID,
+            headers: {"Authorization": 'Bearer ' + sessionStorage["data.token"]},
             dataType: 'json',
             beforeSend: function () {
                 //$('#user-info').html('<img src="https://i.gifer.com/7YQl.gif">');
