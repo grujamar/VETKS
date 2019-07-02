@@ -4,7 +4,8 @@ $(document).ready(function () {
     //Chekc if URL contains string index.html
     console.log('Stranica + ' + window.location.href.indexOf("index.html") > -1);
     if (window.location.href.indexOf("index.html") > -1 || window.location.href.indexOf("InsertPerson.html") > -1 || window.location.href.indexOf("cards.html") > -1) {
-        if (sessionStorage.length == 0) {
+        if (sessionStorage.length === 0) {
+            console.log('Session storage is ' + sessionStorage["data.token"] + ' . Length ' + sessionStorage.length );
             window.location= 'http://localhost:8383/VETKS/login.html';
         }
     }
@@ -54,7 +55,7 @@ $(document).ready(function () {
             },
             messages: {
                 username: {
-                    required: 'Username je obavezan.',
+                    required: 'Username je obavezan',
                     rangelength: 'Username mora biti izmedju 2 i 20 karaktera.'
                 },
                 password: {
@@ -368,4 +369,97 @@ $(document).ready(function () {
     });
     /////////////////////////////////////////////////////////////////////////
     
+    
+    
+//---------------------Call Ajax on btnRegisterSubmit---------------------
+//------------------------------------------------------------------------
+    $("#btnRegisterSubmit").click(function () {
+
+        var contactFormRegister = $("#contact-form-id-register");
+        contactFormRegister.validate({
+            highlight: function (element) {
+                $(element).closest('.form-group').addClass("has-danger");
+                $(element).addClass("form-control-danger");
+            },
+            unhighlight: function (element) {
+                $(element).closest('.form-group').removeClass('has-danger').addClass('has-success');
+                $(element).removeClass('form-control-danger').addClass('form-control-success');
+            },
+            rules: {
+                username: {
+                    required: true,
+                    rangelength: [2, 20]
+                },
+                password: {
+                    required: true,
+                    minlength: 6
+                }
+            },
+            messages: {
+                username: {
+                    required: 'Username je obavezan',
+                    rangelength: 'Username mora biti izmedju 2 i 20 karaktera.'
+                },
+                password: {
+                    required: "Lozinka je obavezna",
+                    minlength: "Lozinka mora imati bar {0} karaktera"
+                }
+
+            },
+            errorElement: 'p',
+            errorPlacement: function (error, element) {
+                error.appendTo($(element).closest('.form-group').find('.error-msg'));
+            }
+
+        });
+        /////////////////////////////////////////////////////////////////////////
+
+        if (contactFormRegister.valid()) {
+            var SendInfoRegister = {username: $('#txt_username').val(),
+                password: $('#txt_password').val()};
+            /*
+            console.log('Parametri za upis - username: ' + $('#txt_username').val() +
+                    ' password: ' + $('#txt_password').val());
+            */
+            $.ajax({
+                type: 'post',
+                url: 'http://ucenickidomovi.pis.rs/VetWebService/api/auth/register',
+                data: JSON.stringify(SendInfoRegister),
+                contentType: "application/json; charset=utf-8",
+                dataType: 'json',
+                beforeSend: function () {
+                    $('.user-login-inner').html('<div class="loading text-center mt-5"><h4>Molimo Vas sačekajte da se upišu podaci..</h4><img src="images/throbber.gif" class="animated-gif"></div>');
+                },
+                success: function (response) {
+                    // successful request; 
+                    console.log('Uspešno - ' + response);
+                    $('.user-login-inner').empty();
+                    $('.user-login-inner').html('<div class="row"><article id="user-profile" class="col-12"><p><strong>Uspešno upisani podaci.</strong></p><a href="login.html" class="btn btn-info px-4">nazad</a></article></div>');
+                    successAlertInsertUser();
+                },
+                error: function () {
+                    // failed request;
+                    $('.user-login-inner').html('<p class="error"><strong>Greška!</strong> Pokušajte ponovo kasnije.</p>');
+                    successAlertErrorInsertUser();
+                }
+            });
+
+        }
+    });
+    
+    
+    //////////////EYE/////////////////
+    $('.password .fa').click(function(){
+        $(this).toggleClass('fa-eye fa-eye-slash');
+        var type = $(this).parent().prev().attr('type');
+        if(type=='password'){
+            $(this).parent().prev().attr('type', 'text');
+        }else{
+            $(this).parent().prev().attr('type', 'password');
+        }
+    });
+    
+    
+    //////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////
 });

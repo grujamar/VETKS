@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     //console.log('Session storage is ' + sessionStorage["data.token"] + ' .Length ' + sessionStorage.length );
     if ( window.location.href.indexOf("UserInfo.html") > -1) {
-        if (sessionStorage.length == 0) {
+        if (sessionStorage.length === 0) {
             window.location= 'http://localhost:8383/VETKS/login.html';
         }
     }

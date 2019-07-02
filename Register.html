@@ -54,35 +54,32 @@ and open the template in the editor.
         <main>
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-md-11 col-lg-9 ">
+                    <div class="col-md-11 col-lg-9">
                         <section class="user-login-wrapper mt-5 rounded">
                             <h2 class="d-none">Registracija korisnika</h2>
                             <div class="user-login-inner text-center py-5">
-                                <h2 class=" text-capitalize">Prijava</h2>
-                                <p class="px-5 text-info">Prijava na portal Veterinarske komore. Popunite vaše korisničke informacije kako bi se ulogovali u sistem.</p>
-                                <form id="user-login-form-group" class="user-login-form text-left mt-5 mb-3" action="" method="post"> 
-                                    <div class="container-fluid">
-                                        <div class="row justify-content-center">
-                                            <div class="form-group col-md-9 col-lg-7">
-                                                <input type="text" name="username" value="" class="form-control" placeholder="Username" id="userName">
-                                                <div class="error-msg"></div>
-                                            </div>
-                                            <div class="form-group col-md-9 col-lg-7">
-                                                <input type="password" name="password" value="" class="form-control" placeholder="Password" id="userPassword">
-                                                <div class="error-msg"></div>
+                                <h2 class=" text-capitalize">Registracija</h2>
+                                <p class="px-5 text-info">Registrujte novog korisnika na portal Veterinarske komore.</p>
+                                <form id="contact-form-id-register" class="contact-form" method="post" action="">
+                                    <div class="form-group">
+                                        <label>Korisničko ime<span class="text-danger pl-2">*</span></label>
+                                        <input id="txt_username" type="text" name="username" value="" class="form-control w-50 mx-auto">
+                                        <div class="error-msg"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Lozinka<span class="text-danger pl-2">*</span></label>
+                                        <div class="input-group password w-50 mx-auto">
+                                            <input id="txt_password" type="password" name="password" value="" class="form-control">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text fa fa-eye" id="basic-addon2"></span>
                                             </div>
                                         </div>
-                                        <div class="text-center">
-                                            <button id="ajax-json" type="submit" name="submit" value="login" class="btn btn-lg btn-info">PRIJAVA
-                                            </button>
-                                        </div>
+                                        <div class="error-msg"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button id="btnRegisterSubmit" class="btn btn-info px-4" type="submit" name="buttonRegisterSend" value="send">POSALJI</button>
                                     </div>
                                 </form>
-                                <hr>
-                                <p class="px-5 text-info">ili registrujte novog člana</p>
-                                <div>
-                                    <a ID="btnRegisterNewMember" href="Register.html" class="btn btn-outline-info px-5"><span class="fa fa-angle-double-right pr-2"></span>Registruj novog člana<span class="fa fa-angle-double-left pl-2"></span></a>
-                                </div>
                             </div>
                         </section>
                     </div>
