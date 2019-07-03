@@ -54,7 +54,7 @@ and open the template in the editor.
                     <li><a class="active" href="index.html">Članovi</a></li>
                     <li><a href="cards.html">Članske kartice</a></li>
                     <li><a href="#contact">Licence</a></li>
-                    <li style="float: right;"><a href="login.html" onclick="return runMyFunction();">Odjava</a></li>
+                    <li style="float: right;"><a href="login.html">Odjava</a></li>
                 </ul>
             </div>
         </header><!--header end-->
@@ -126,11 +126,5 @@ and open the template in the editor.
         <script src="js/disabledRightClickAndCtrl.js" type="text/javascript"></script>
         <!--All page js-->
         <script src="js/main.js" type="text/javascript"></script>
-        <script>
-        function runMyFunction(){
-            sessionStorage.removeItem("data.token");
-            return true;
-        }
-        </script>
     </body>
 </html>

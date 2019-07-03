@@ -7,6 +7,11 @@ $(document).ready(function () {
         }
     }
     
+    if (window.location.href.indexOf("login.html") > -1){
+        console.log('clear session');
+        sessionStorage.clear();
+    }
+    
     ///////////////////////////////////////////////////////////////////
     function GetURLParameter(sParam) {
         var urlCurrent = $(location).attr('href'); //get current url

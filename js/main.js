@@ -10,6 +10,11 @@ $(document).ready(function () {
         }
     }
     
+    if (window.location.href.indexOf("login.html") > -1){
+        console.log('clear session');
+        sessionStorage.clear();
+    }
+    
     ////-------------------SWEETALERT-------------------------------
     /////////////////////////////////////////////////////////////////
     function successAlertInsertUser() {
