@@ -574,3 +574,13 @@ table thead th{
     width: 50px;
     height: auto;
 }
+
+/*********ADD CHILD ROW**************/
+ td.details-control {
+    background: url('../img/plus-ico.png') no-repeat center center;
+    cursor: pointer;
+}
+ tr.shown td.details-control {
+    background: url('../img/minus-ico.png') no-repeat center center;
+}
+/************************************/

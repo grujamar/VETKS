@@ -11,7 +11,7 @@ $(document).ready(function () {
     }
     
     if (window.location.href.indexOf("login.html") > -1){
-        console.log('clear session');
+        //console.log('clear session');
         sessionStorage.clear();
     }
     
@@ -143,7 +143,8 @@ $(document).ready(function () {
                $('#example1').show();
                 var data1 = [];
                 for (var x in data) {
-                    data1.push([data[x].name, 
+                    data1.push(['',
+                                data[x].name, 
                                 data[x].lastName, 
                                 data[x].title, 
                                 (data[x].dateOfBirth).substring(8, 10) + '-' + (data[x].dateOfBirth).substring(5, 7) + '-' + (data[x].dateOfBirth).substring(0, 4), 
@@ -152,8 +153,25 @@ $(document).ready(function () {
                                 (data[x].licenseValidity).substring(8, 10) + '-' + (data[x].licenseValidity).substring(5, 7) + '-' + (data[x].licenseValidity).substring(0, 4),
                                 '<button id="chooseUser" class="btn btn-outline-secondary" value=' + data[x].personId + '>Izaberi korisnika</button>']);
                 }
-                $('#example1').DataTable({
+                
+                var table = $('#example1').DataTable({
                     data: data1,
+                    columns: [
+                        {
+                            class:          'details-control',
+                            orderable:      false,
+                            data:           null,
+                            defaultContent: ''
+                        },
+                        { data: data1.name },
+                        { data: data1.lastName },
+                        { data: data1.title },
+                        { data: data1.dateOfBirth },
+                        { data: data1.photo },
+                        { data: data1.licenseNumber },
+                        { data: data1.licenseValidity },
+                        { data: data1.personId }
+                    ],
                     lengthMenu: [[10, 25, 50, 100], [10, 25, 50, 100]],
                     scrollY: false,
                     scrollX: false,
@@ -161,15 +179,63 @@ $(document).ready(function () {
                         
                         $('div.loading').remove();
                         
-                      }
+                    }
                 });
-            })
+                
+                ///////////////////////////////////////////////////////
+                /////////////////ADD CHILD ROW/////////////////////////////
+                // Add event listener for opening and closing details
+                    function format ( d ) {
+                        // `d` is the original data object for the row
+                        console.log("row for d " + d);
+                        console.log("row for d " + d[1] + ' ' + d[2]);
+                        console.log("row for d " + data1.Status);
+                        return '<table cellpadding="5" cellspacing="1" border="1" style="margin-left:50px;">'+
+                            '<tr>'+
+                                '<td>Ime i prezime:</td>'+
+                                '<td>' + d[1] + ' ' + d[2] + '</td>'+
+                            '</tr>'+
+                            '<tr>'+
+                                '<td>Status:</td>'+
+                                '<td>'+userStatus(d.Status)+'</td>'+
+                            '</tr>'+
+                        '</table>';
+                    }
+
+
+                    $('#example1 tbody').on('click', 'td.details-control', function () {
+                        var tr = $(this).closest('tr');
+                        var row = table.row( tr );
+
+                        if ( row.child.isShown() ) {
+                            // This row is already open - close it
+                            row.child.hide();
+                            tr.removeClass('shown');
+                        }
+                        else {
+                            // Open this row
+                            row.child( format(row.data()) ).show();
+                            tr.addClass('shown');
+                        }
+                    } );
+                
+                })
+
+                ///////////////////////////////////////////////////////
+                ///////////////////////////////////////////////////////
             .fail(function (jqXHR, statusText) {
                 $('#example1').text(jqXHR.status + '-' + jqXHR.statusText + '-' + statusText);
             });
-
     }
-///////////////////////////////////////////////
+    ///////////////////////////////////////////////
+
+                function userStatus(jsonStatus){
+                    if (jsonStatus === true){
+                        return "Aktivan";
+                    }else{
+                        return "Neaktivan";
+                    }
+                }
 
 /////////////////////////////////////////////////////////////////////////
 //-------------------ChooseUser-------------------------------------------
