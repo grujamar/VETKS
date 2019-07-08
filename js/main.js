@@ -151,11 +151,19 @@ $(document).ready(function () {
                                 '<img src="https://api.adorable.io/avatars/150x150/abott@adorable.png">', 
                                 data[x].licenseNumber,
                                 (data[x].licenseValidity).substring(8, 10) + '-' + (data[x].licenseValidity).substring(5, 7) + '-' + (data[x].licenseValidity).substring(0, 4),
+                                data[x].status,
                                 '<button id="chooseUser" class="btn btn-outline-secondary" value=' + data[x].personId + '>Izaberi korisnika</button>']);
                 }
                 
                 var table = $('#example1').DataTable({
                     data: data1,
+                    //uvedeno zbog statusa
+                    columnDefs: [
+                    {
+                        targets: [ 8 ],
+                        visible: false,
+                        searchable: false
+                    }],
                     columns: [
                         {
                             class:          'details-control',
@@ -170,6 +178,7 @@ $(document).ready(function () {
                         { data: data1.photo },
                         { data: data1.licenseNumber },
                         { data: data1.licenseValidity },
+                        { data: data1.status },
                         { data: data1.personId }
                     ],
                     lengthMenu: [[10, 25, 50, 100], [10, 25, 50, 100]],
@@ -187,17 +196,21 @@ $(document).ready(function () {
                 // Add event listener for opening and closing details
                     function format ( d ) {
                         // `d` is the original data object for the row
-                        console.log("row for d " + d);
-                        console.log("row for d " + d[1] + ' ' + d[2]);
-                        console.log("row for d " + data1.Status);
-                        return '<table cellpadding="5" cellspacing="1" border="1" style="margin-left:50px;">'+
+                        //console.log("row for d " + d);
+                        //console.log("row for d " + d[1] + ' ' + d[2]);
+                        //console.log("row for d " + d[8]);
+                        return '<table cellpadding="5" cellspacing="1" border="1" style="margin-left:40px;">'+
                             '<tr>'+
                                 '<td>Ime i prezime:</td>'+
                                 '<td>' + d[1] + ' ' + d[2] + '</td>'+
                             '</tr>'+
                             '<tr>'+
+                                '<td>Titula:</td>'+
+                                '<td>' + d[3] + '</td>'+
+                            '</tr>'+
+                            '<tr>'+
                                 '<td>Status:</td>'+
-                                '<td>'+userStatus(d.Status)+'</td>'+
+                                '<td>'+userStatus(d[8])+'</td>'+
                             '</tr>'+
                         '</table>';
                     }
